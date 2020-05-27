@@ -17,7 +17,7 @@ class UserRepository extends Repository {
             username: requestData.username,
             password: hash,
             token: token,
-            credits: 1000,
+            credits: 0,
         });
     }
 

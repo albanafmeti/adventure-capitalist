@@ -18,7 +18,8 @@
         "socket.io-client": "^2.3.0",
         "vue-socket.io-extended": "^4.0.3",
         "vuesax": "^4.0.1-alpha.8",
-        "bootstrap": "4.4.1"
+        "bootstrap": "4.4.1",
+        "pluralize": "^8.0.0"
     },
     "devDependencies": {
         "node-sass": "^4.12.0",

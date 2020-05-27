@@ -13,6 +13,7 @@ class UserBusinessResource {
             upgradeCost: userBusiness.upgradeCost,
             upgradeTime: userBusiness.upgradeTime,
             upgradeCount: userBusiness.upgradeCount,
+            upgradePreviousGoal: userBusiness.upgradePreviousGoal,
             upgradeCountGoal: userBusiness.upgradeCountGoal,
             managerId: userBusiness.managerId,
             hasManager: !!userBusiness.managerId,

@@ -30,59 +30,20 @@
 
 <script>
     export default {
-        name: 'default'
+        name: 'default',
+        computed: {
+            user() {
+                return this.$store.state.auth.user;
+            },
+        },
+        mounted() {
+            this.$store.commit('user/setCredits', this.user.credits);
+        }
     }
 </script>
 
 <style lang="scss">
 
     @import "../assets/scss/style";
-
-    .left-side, .middle-side, .right-side {
-        display: flex;
-        height: 100vh;
-        flex-direction: column;
-    }
-
-    .left-side {
-        .smaller-part {
-            flex: 4;
-            border-bottom: 2px solid $primary;
-            margin-bottom: 1px;
-        }
-
-        .bigger-part {
-            flex: 10;
-            border-top: 2px solid $primary;
-        }
-    }
-
-    .middle-side {
-        .top-part {
-            flex: 2;
-        }
-
-        .game-container {
-            flex: 15;
-            border: 2px solid $dark;
-        }
-
-        .bottom-part {
-            flex: 2;
-        }
-    }
-
-    .right-side {
-        .smaller-part {
-            flex: 4;
-            border-top: 2px solid $danger;
-            margin-top: 1px;
-        }
-
-        .bigger-part {
-            flex: 10;
-            border-bottom: 2px solid $danger;
-        }
-    }
 
 </style>

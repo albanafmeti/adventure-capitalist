@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         upgradeCost: DataTypes.BIGINT,
         upgradeTime: DataTypes.INTEGER,
         upgradeCount: DataTypes.INTEGER,
+        upgradePreviousGoal: DataTypes.INTEGER,
         upgradeCountGoal: DataTypes.INTEGER,
         token: DataTypes.STRING,
         managerId: DataTypes.INTEGER

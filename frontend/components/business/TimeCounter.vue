@@ -11,13 +11,18 @@
                 seconds: this.time / 1000
             }
         },
+        watch: {
+            time(value) {
+                this.seconds = value / 1000;
+            }
+        },
         computed: {
             minutes() {
                 const n = Math.round(this.seconds / 60);
                 return ("0" + n).slice(-2);
             },
             secs() {
-                const n = this.seconds - this.minutes * 60;
+                const n = Math.round(this.seconds) - this.minutes * 60;
                 return ("0" + n).slice(-2);
             },
         },
@@ -27,8 +32,12 @@
 
                     if (this.seconds <= 0) {
                         clearInterval(interval);
-                    } else {
+                        this.seconds = this.time / 1000;
+
+                    } else if (this.seconds >= 1) {
                         this.seconds -= 1;
+                    } else {
+                        this.seconds = 0;
                     }
 
                 }, 1000);

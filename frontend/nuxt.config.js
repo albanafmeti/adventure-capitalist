@@ -35,6 +35,7 @@ export default {
         '@/plugins/vuesax',
         '@/plugins/socket.js',
         '@/plugins/repositories.js',
+        '@/plugins/pluralize.js',
     ],
     /*
     ** Nuxt.js dev-modules

@@ -1,12 +1,17 @@
 const initialState = {
-
     credits: 0,
-    revenues: 0, /* - During current session - */
+    revenue: 0, /* - During current session - */
     expenses: 0, /* - During current session - */
 
     businessesLoaded: false,
     businesses: [],
 };
+
+function nextUpgradeCountGoal(currentGoal) {
+    let goals = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 1000];
+    let index = goals.indexOf(currentGoal);
+    return goals[index + 1] ? goals[index + 1] : goals[index] * 100;
+}
 
 export const state = () => ({
     ...initialState
@@ -14,14 +19,14 @@ export const state = () => ({
 
 const types = {
     SET_CREDITS: 'setCredits',
-    ADD_CREDIT: 'addCredit',
-    SUBTRACT_CREDIT: 'subtractCredit',
 
     ADD_REVENUE: 'addRevenue',
     ADD_EXPENSE: 'addExpense',
 
     SET_BUSINESSES_LOADED: 'setBusinessesLoaded',
     SET_BUSINESSES: 'setBusinesses',
+
+    UPGRADE_BUSINESS: 'upgradeBusiness',
 
     CLEAR_STATE: 'clearState',
 };
@@ -32,12 +37,12 @@ export const mutations = {
         state.credits = credits;
     },
 
-    [types.ADD_CREDIT](state, credit) {
-        state.credits = state.credits + credit;
+    [types.ADD_REVENUE](state, credit) {
+        state.revenue = state.revenue + credit;
     },
 
-    [types.SUBTRACT_CREDIT](state, credit) {
-        state.credits = state.credits - credit;
+    [types.ADD_EXPENSE](state, credit) {
+        state.expenses = state.expenses + credit;
     },
 
     [types.SET_BUSINESSES_LOADED](state, loaded) {
@@ -47,6 +52,40 @@ export const mutations = {
     [types.SET_BUSINESSES](state, businesses) {
         state.businesses = businesses;
     },
+
+    [types.UPGRADE_BUSINESS](state, {business, notifySuccess}) {
+        state.businesses = state.businesses.map(b => {
+
+            if (b.id === business.id) {
+
+                if (b.upgradeCount + 1 >= b.upgradeCountGoal) {
+
+                    notifySuccess("CONGRATS", `Time is halved for business: ${business.name}.`, 6000);
+
+                    return {
+                        ...b,
+                        upgradePreviousGoal: b.upgradeCountGoal,
+                        upgradeCountGoal: nextUpgradeCountGoal(b.upgradeCountGoal),
+                        upgradeTime: b.currentTime / 2,
+                        currentTime: b.currentTime / 2,
+                        upgradeCount: b.upgradeCount + 1,
+                        upgradeCost: b.upgradeCost * b.coefficient,
+                        currentRevenue: (b.upgradeCount + 1) * b.initialRevenue
+                    }
+                }
+
+                return {
+                    ...b,
+                    upgradeCount: b.upgradeCount + 1,
+                    upgradeCost: b.upgradeCost * b.coefficient,
+                    currentRevenue: (b.upgradeCount + 1) * b.initialRevenue
+                }
+            }
+
+            return b;
+        });
+    },
+
 
     [types.CLEAR_STATE](state) {
         Object.keys(state).forEach(key => {
@@ -80,4 +119,11 @@ export const getters = {
     business: (state) => (id) => {
         return state.businesses.find(business => business.id === id)
     },
+
+    credits: state => state.credits,
+    revenue: state => state.revenue,
+    expenses: state => state.expenses,
+
+    currentCredit: state => state.credits + state.revenue - state.expenses,
+
 };

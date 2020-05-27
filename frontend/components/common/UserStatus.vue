@@ -12,16 +12,22 @@
         </div>
 
         <div class="user-credits">
-            $ 1.200.323
+            $ {{ currentCredit.toFixed(2) }}
         </div>
 
     </div>
 </template>
 
 <script>
+
+    import {mapGetters} from 'vuex';
+
     export default {
         name: "UserStatus",
         computed: {
+            ...mapGetters({
+                currentCredit: 'user/currentCredit',
+            }),
             user() {
                 return this.$store.state.auth.user;
             }

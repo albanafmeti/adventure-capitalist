@@ -1,14 +1,13 @@
 <template>
-    <div class="progress" style="height: 20px;">
-        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-             role="progressbar" ref="progress" :aria-valuenow="progress"
+    <div class="progress mt-1 border-rounded" style="height: 6px;">
+        <div class="progress-bar" role="progressbar" ref="progress" :aria-valuenow="progress"
              aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "ProgressBar",
+        name: "UpgradeProgressBar",
         props: ["progress"],
         watch: {
             progress(value) {
@@ -22,9 +21,3 @@
         }
     }
 </script>
-
-<style scoped>
-    .progress-bar {
-        transition: width 0.01s linear !important;
-    }
-</style>

@@ -45,13 +45,18 @@ module.exports = {
                 allowNull: false,
                 defaultValue: 1
             },
+            upgrade_previous_goal: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
             upgrade_count_goal: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 defaultValue: 25
             },
             token: {
-                allowNull: false,
+                allowNull: true,
                 type: Sequelize.STRING
             },
             manager_id: {

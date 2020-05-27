@@ -11,7 +11,8 @@
 
             <div class="business-list flex-fill">
 
-                <p class="text-muted text-center status-info">You own 3 businesses. 2 of them are operating by
+                <p class="text-muted text-center status-info">
+                    You own {{ $pluralize('business', myBusinesses.length, true)}}. 2 of them are operating by
                     managers.</p>
 
                 <div class="row">
@@ -22,7 +23,7 @@
 
                     <div class="col-12">
 
-                        <!--                        <SingleBusiness/>-->
+                        <SingleBusiness v-for="business in filteredBusinesses" :key="business.id" :business="business"/>
 
                     </div>
 
@@ -55,18 +56,18 @@
         data() {
             return {
                 isManagersDialogOpen: false,
-                business: {
-                    id: 10,
-                    name: "Lemonade",
-                    managerId: null
-                }
             }
         },
         computed: {
             ...mapGetters({
                 businesses: 'business/businesses',
                 myBusinesses: 'user/businesses',
-            })
+            }),
+
+            filteredBusinesses() {
+                const ids = this.myBusinesses.map(b => b.id);
+                return this.businesses.filter(b => !ids.includes(b.id))
+            }
         },
         mixins: [NotificationMixin, CommonMiddleware, InitialLoadMixin],
         created() {
@@ -74,6 +75,3 @@
         }
     }
 </script>
-
-<style>
-</style>
