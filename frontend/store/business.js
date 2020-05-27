@@ -33,10 +33,6 @@ export const mutations = {
         state.managersLoaded = loaded;
     },
 
-    [types.SET_BUSINESSES](state, businesses) {
-        state.businesses = businesses;
-    },
-
     [types.SET_MANAGERS](state, managers) {
         state.managers = managers;
     },

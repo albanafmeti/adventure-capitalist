@@ -7,7 +7,7 @@
                     <img
                         @click.prevent="operate"
                         class="img-thumbnail rounded-circle activated"
-                        src="https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png">
+                        :src="business.image">
 
                     <template #tooltip>
                         Click to operate with your business and to make money.
@@ -18,8 +18,8 @@
             <div class="business-details d-flex flex-column">
                 <div class="detail-top">
                     <div class="business-name mb-2">
-                        <span>Lemonade Shop</span>
-                        <span>+ $ 412</span>
+                        <span>{{ business.name }} ( {{ business.upgradeCount }} )</span>
+                        <span>+ $ {{ business.currentRevenue }}</span>
                     </div>
                     <div>
 
@@ -33,15 +33,17 @@
                 </div>
                 <div class="detail-bottom b-actions">
                     <div>
-                        <TimeCounter ref="counter" :time="currentLevel.time"/>
+                        <TimeCounter ref="counter" :time="business.currentTime"/>
                     </div>
-                    <div>
+
+                    <div v-if="business.hasManager">
                         <span class="text-muted business-manager">Managed by Jim Terry</span>
                     </div>
+
                     <div class="d-flex">
                         <vs-tooltip>
                             <vs-button>
-                                $ 1200 - Upgrade
+                                $ {{ business.upgradeCost }} - Upgrade
                             </vs-button>
 
                             <template #tooltip>
@@ -75,17 +77,7 @@
                 hasManager: !this.business.managerId
             }
         },
-        computed: {
-            currentLevel() {
-                return {
-                    profit: 412,
-                    time: 15000,
-                    upgrade: 1200,
-                    upgradeSteps: 5,
-                    upgradeStepIncrease: 0.2
-                }
-            }
-        },
+        computed: {},
         methods: {
             operate() {
 

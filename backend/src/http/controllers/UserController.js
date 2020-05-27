@@ -49,7 +49,7 @@ class UserController extends Controller {
         const user = await UserRepository.findByToken(token);
 
         if (!user) {
-            return super.responseService(response).withError("User not found.");
+            return super.responseService(response).withError("User not found.", 401);
         }
 
         return super.responseService(response).withSuccess("User profile.", {

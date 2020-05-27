@@ -40,6 +40,11 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: true
             },
+            upgrade_count: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                defaultValue: 1
+            },
             upgrade_count_goal: {
                 type: Sequelize.INTEGER,
                 allowNull: false,

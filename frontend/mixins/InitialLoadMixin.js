@@ -6,13 +6,16 @@ export default {
     methods: {
         ...mapActions({
             getBusinesses: 'business/getBusinesses',
+            getMyBusinesses: 'user/getBusinesses',
             getManagers: 'business/getManagers',
         }),
         async initialLoad() {
             try {
+                await this.getMyBusinesses();
                 await this.getBusinesses();
                 await this.getManagers();
             } catch (error) {
+                console.log(error);
                 this.handleError(error);
             }
         }

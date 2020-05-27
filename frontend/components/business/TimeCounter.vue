@@ -13,7 +13,7 @@
         },
         computed: {
             minutes() {
-                const n = Math.floor(this.seconds / 60);
+                const n = Math.round(this.seconds / 60);
                 return ("0" + n).slice(-2);
             },
             secs() {

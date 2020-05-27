@@ -16,15 +16,13 @@
 
                 <div class="row">
 
+                    <div class="col-md-12">
+                        <MySingleBusiness v-for="business in myBusinesses" :key="business.id" :business="business"/>
+                    </div>
+
                     <div class="col-12">
 
-                        <MySingleBusiness :business="business"/>
-                        <SingleBusiness/>
-                        <SingleBusiness/>
-                        <SingleBusiness/>
-                        <SingleBusiness/>
-                        <SingleBusiness/>
-                        <SingleBusiness/>
+                        <!--                        <SingleBusiness/>-->
 
                     </div>
 
@@ -50,6 +48,8 @@
     import CommonMiddleware from "../mixins/CommonMiddleware";
     import InitialLoadMixin from "../mixins/InitialLoadMixin";
 
+    import {mapActions, mapGetters} from 'vuex';
+
     export default {
         components: {MySingleBusiness, ManagersDialog, SingleBusiness, UserStatus, BusyLoading, NavBar},
         data() {
@@ -62,8 +62,14 @@
                 }
             }
         },
+        computed: {
+            ...mapGetters({
+                businesses: 'business/businesses',
+                myBusinesses: 'user/businesses',
+            })
+        },
         mixins: [NotificationMixin, CommonMiddleware, InitialLoadMixin],
-        mounted() {
+        created() {
             this.initialLoad();
         }
     }

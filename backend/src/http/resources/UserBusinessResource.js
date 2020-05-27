@@ -12,9 +12,13 @@ class UserBusinessResource {
             initialRevenue: userBusiness.business.initialRevenue,
             upgradeCost: userBusiness.upgradeCost,
             upgradeTime: userBusiness.upgradeTime,
+            upgradeCount: userBusiness.upgradeCount,
             upgradeCountGoal: userBusiness.upgradeCountGoal,
             managerId: userBusiness.managerId,
             hasManager: !!userBusiness.managerId,
+
+            currentRevenue: userBusiness.upgradeCount * userBusiness.business.initialRevenue,
+            currentTime: userBusiness.upgradeTime ? userBusiness.upgradeTime : userBusiness.business.initialTime
         };
     }
 
