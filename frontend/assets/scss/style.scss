@@ -1,0 +1,10 @@
+$primary: rgb(91, 60, 196);
+$success: rgb(23, 201, 100);
+$danger: rgb(242, 19, 93);
+$warn: rgb(254, 130, 0);
+$dark: rgb(36, 33, 69);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "./partials/common";
+
+

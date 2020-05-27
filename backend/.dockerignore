@@ -1,0 +1,25 @@
+.vscode
+.DS_Store
+node_modules/
+npm-debug.log
+
+.idea
+.gitignore
+.eslintrc
+.eslintignore
+dist
+.git
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+*.html

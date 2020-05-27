@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+COMPOSE="docker-compose "
+SERVICE="backend"
+
+# If we don't pass any arguments, show list of available commands:
+if [ $# -eq 0 ] || [ "$1" == "list" ]; then
+cat <<EOF
+
+$(echo -e "\033[0;32mAvailable commands:\033[0m")
+
+ - ps       (list containers)
+ - start    (start containers)
+ - stop     (stop containers)
+ - kill     (kill containers)
+ - node     (run node commands)
+ - npm      (run npm commands)
+ - seq      (run sequelize-cli commands)
+
+EOF
+
+$COMPOSE exec $SERVICE npm run --silent command list
+
+    exit
+fi
+
+# Source .env, which can override env vars.
+if [ -f .env ]; then
+    source .env
+fi
+
+if [ "$1" == "ps" ]; then
+    $COMPOSE ps
+
+# Start up containers
+elif [ "$1" == "start" ]; then
+    $COMPOSE up -d
+
+# Stop the containers
+elif [ "$1" == "stop" ]; then
+    $COMPOSE down
+
+# Kill the containers
+elif [ "$1" == "kill" ]; then
+    $COMPOSE kill
+
+# If "node" is used, run node
+elif [ "$1" == "node" ]; then
+    shift 1
+    $COMPOSE exec $SERVICE node "$@"
+
+# If "npm" is used, run npm
+elif [ "$1" == "npm" ]; then
+    shift 1
+    $COMPOSE exec $SERVICE npm "$@"
+
+# If "seq" is used, run sequelize-cli commands
+elif [ "$1" == "seq" ]; then
+    shift 1
+    $COMPOSE exec $SERVICE npx sequelize-cli "$@"
+
+# Else, run our app commands
+else
+    $COMPOSE exec $SERVICE npm run --silent command "$@"
+fi

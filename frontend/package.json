@@ -1,0 +1,27 @@
+{
+    "name": "game",
+    "version": "1.0.0",
+    "description": "Adventure Capitalist",
+    "author": "Alban Afmeti",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "@nuxtjs/axios": "^5.3.6",
+        "@nuxtjs/dotenv": "^1.3.0",
+        "@nuxtjs/auth": "^4.6.0",
+        "nuxt": "^2.0.0",
+        "socket.io-client": "^2.3.0",
+        "vue-socket.io-extended": "^4.0.3",
+        "vuesax": "^4.0.1-alpha.8",
+        "bootstrap": "4.4.1"
+    },
+    "devDependencies": {
+        "node-sass": "^4.12.0",
+        "sass-loader": "^7.1.0"
+    }
+}

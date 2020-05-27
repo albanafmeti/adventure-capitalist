@@ -1,0 +1,34 @@
+{
+  "name": "waw-core",
+  "version": "0.0.1",
+  "description": "WAW Core Service",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && mocha $(find test -name '*.test.js') --timeout 10000 --reporter mochawesome --reporter-options 'code=true,quiet=false,inline=true,json=false'",
+    "start": "node ./src/app.js",
+    "dev": "nodemon --watch src",
+    "seed": "export NODE_ENV=dev && node src/database/seed.js",
+    "command": "node ./src/commands/run.js",
+    "sql-seed": "npx sequelize-cli db:seed:all --seeders-path src/database/seeders/sql"
+  },
+  "author": "Alban Afmeti",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
+    "config": "^3.2.3",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "moment": "^2.24.0",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.21.2",
+    "sequelize-cli": "^5.5.1",
+    "socket.io": "^2.3.0",
+    "bcryptjs": "^2.4.3"
+  }
+}
