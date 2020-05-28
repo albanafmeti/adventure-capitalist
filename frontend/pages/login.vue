@@ -3,7 +3,7 @@
 
         <div class="p-3 flex-fill position-relative d-flex flex-column align-items-center justify-content-center">
 
-            <BusyLoading v-if="false" loading-text="Loading Game..."/>
+            <BusyLoading v-if="isLoading" :loading-text="isLoading"/>
 
             <div class="game-logo">
                 <img src="~/assets/images/logo.png">
@@ -73,12 +73,15 @@
 
     export default {
         components: {SingleBusiness, UserStatus, BusyLoading, NavBar},
+        layout: 'login',
         data() {
             return {
                 activeTab: 'login',
                 username: null,
                 password: null,
                 passwordConfirmation: null,
+
+                isLoading: false
             }
         },
         mixins: [NotificationMixin, HandleErrorMixin],
@@ -86,6 +89,9 @@
             async login() {
 
                 try {
+
+                    this.isLoading = "Logging in...";
+
                     const response = await this.$auth.login({
                         data: {username: this.username, password: this.password}
                     });
@@ -95,11 +101,15 @@
                     }
                 } catch (error) {
                     this.handleError(error);
+                } finally {
+                    this.isLoading = false;
                 }
             },
+
             async register() {
-                // TODO: Use loading circle.
                 try {
+
+                    this.isLoading = "Creating account...";
                     const response = await this.$repos.userRepo.register({
                         username: this.username,
                         password: this.password,
@@ -113,14 +123,10 @@
 
                 } catch (error) {
                     this.handleError(error);
+                } finally {
+                    this.isLoading = false;
                 }
             }
         }
     }
 </script>
-
-<style>
-    .vs-input {
-        min-width: 290px;
-    }
-</style>

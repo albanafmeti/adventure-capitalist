@@ -13,7 +13,7 @@ body {
 
 
 .vs-loading {
-    background: rgba(#ffffff, 0.5);
+    background: rgba(#ffffff, 0.8);
 }
 
 .left-side, .middle-side, .right-side {
@@ -207,6 +207,10 @@ body {
         }
 
     }
+}
+
+.vs-input {
+    min-width: 290px;
 }
 
 .vs-input-parent--border .vs-input-content .vs-input__label {

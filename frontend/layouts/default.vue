@@ -1,43 +1,54 @@
 <template>
 
-    <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-2 p-0 left-side">
-                <div class="smaller-part"></div>
-                <div class="bigger-part"></div>
-            </div>
-
-            <div class="col-8 p-0 middle-side">
-                <div class="top-part"></div>
-
-                <div class="game-container">
-                    <nuxt/>
-                </div>
-
-                <div class="bottom-part"></div>
-            </div>
-
-            <div class="col-2 p-0 right-side">
-                <div class="bigger-part"></div>
-                <div class="smaller-part"></div>
-            </div>
-
-        </div>
-    </div>
+    <game-layout>
+        <nuxt/>
+    </game-layout>
 
 </template>
 
 <script>
+
+    import {mapGetters} from 'vuex';
+    import GameLayout from "../components/GameLayout";
+
     export default {
         name: 'default',
+        components: {GameLayout},
         computed: {
             user() {
                 return this.$store.state.auth.user;
             },
+            loggedIn() {
+                return this.$auth.loggedIn;
+            },
+            ...mapGetters({
+                currentCredit: 'user/currentCredit',
+                businesses: 'user/businesses',
+            })
+        },
+        methods: {
+            synchronizeData() {
+                this.$socket.client.emit('synchronize', {
+                    currentCredit: this.currentCredit,
+                    businesses: this.businesses,
+                });
+            }
         },
         mounted() {
-            this.$store.commit('user/setCredits', this.user.credits);
+            if (this.loggedIn) {
+
+                this.$store.commit('user/setCredits', this.user.credits);
+
+                this.$socket.client.open();
+                this.synchronizeDataInterval = setInterval(() => {
+                    this.synchronizeData();
+                }, 5000);
+            }
+
+        },
+        beforeDestroy() {
+            clearInterval(this.synchronizeDataInterval);
+            this.$socket.client.close();
         }
     }
 </script>

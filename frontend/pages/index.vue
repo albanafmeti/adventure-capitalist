@@ -1,7 +1,8 @@
 <template>
     <div class="h-100 d-flex flex-column position-relative">
 
-        <BusyLoading v-if="false" loading-text="Loading Game..."/>
+        <BusyLoading v-if="!businessesLoaded || !myBusinessesLoaded" loading-text="Loading Businesses..."/>
+        <BusyLoading v-else-if="!managersLoaded" loading-text="Loading Managers..."/>
 
         <NavBar @managers="$refs.managersDialog.show()"/>
 
@@ -64,7 +65,10 @@
         computed: {
             ...mapGetters({
                 businesses: 'business/businesses',
+                businessesLoaded: 'business/businessesLoaded',
                 myBusinesses: 'user/businesses',
+                myBusinessesLoaded: 'user/businessesLoaded',
+                managersLoaded: 'business/managersLoaded',
             }),
 
             filteredBusinesses() {
