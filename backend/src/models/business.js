@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         image: DataTypes.STRING,
         type: DataTypes.STRING,
-        initialCost: DataTypes.BIGINT,
+        initialCost: DataTypes.DOUBLE,
         coefficient: DataTypes.FLOAT,
-        initialTime: DataTypes.INTEGER,
+        initialTime: DataTypes.FLOAT,
         initialRevenue: DataTypes.BIGINT
     }, {
         tableName: 'businesses',

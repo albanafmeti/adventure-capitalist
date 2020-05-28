@@ -26,14 +26,7 @@
                 businesses: 'user/businesses',
             })
         },
-        methods: {
-            synchronizeData() {
-                this.$socket.client.emit('synchronize', {
-                    currentCredit: this.currentCredit,
-                    businesses: this.businesses,
-                });
-            }
-        },
+        methods: {},
         mounted() {
             if (this.loggedIn) {
 
@@ -41,7 +34,13 @@
 
                 this.$socket.client.open();
                 this.synchronizeDataInterval = setInterval(() => {
-                    this.synchronizeData();
+
+                    this.$socket.client.emit('synchronize', {
+                        accessToken: this.$auth.getToken('local').replace("Bearer ", ""),
+                        currentCredit: this.currentCredit,
+                        businesses: this.businesses,
+                    });
+
                 }, 5000);
             }
 

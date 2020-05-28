@@ -1,5 +1,6 @@
 const Controller = require('./Controller');
 const UserRepository = require('../../repositories/UserRepository');
+const BusinessRepository = require('../../repositories/BusinessRepository');
 const UserResource = require('../resources/UserResource');
 const bcrypt = require('bcryptjs');
 
@@ -37,6 +38,10 @@ class UserController extends Controller {
         if (!user) {
             return super.responseService(response).withError("User could not be created.");
         }
+
+        // Assign the first business to user for free.
+        const firstBusiness = await BusinessRepository.findByType('lemonade-stand');
+        await BusinessRepository.purchaseBusiness(user, firstBusiness);
 
         return super.responseService(response).withSuccess(`You have been registered successfully! Login and play this awesome game.`, {
             "user": UserResource.toArray(user)

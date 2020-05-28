@@ -90,7 +90,7 @@
                 isOperating: false,
                 timeValue: this.business.currentTime,
 
-                operationInterval: null
+                operationIntervals: []
             }
         },
         computed: {
@@ -118,10 +118,10 @@
                 this.isOperating = true;
                 let progress = 100 * 100 / this.business.currentTime;
 
-                this.operationInterval = setInterval(() => {
+                let interval = setInterval(() => {
 
                     if (this.progress >= 100) {
-                        clearInterval(this.operationInterval);
+                        clearInterval(interval);
                         this.progress = 0;
                         this.timeValue = this.business.currentTime;
                         this.isOperating = false;
@@ -137,6 +137,7 @@
 
                 }, 100);
 
+                this.operationIntervals.push(interval);
                 this.$refs.counter.start();
             },
 
@@ -154,7 +155,9 @@
             }
         },
         beforeDestroy() {
-            clearInterval(this.operationInterval);
+            this.operationIntervals.forEach(interval => {
+                clearInterval(interval)
+            });
         }
     }
 </script>

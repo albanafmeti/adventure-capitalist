@@ -85,6 +85,13 @@
             }
         },
         mixins: [NotificationMixin, HandleErrorMixin],
+        watch: {
+            activeTab() {
+                this.username = null;
+                this.password = null;
+                this.passwordConfirmation = null;
+            }
+        },
         methods: {
             async login() {
 

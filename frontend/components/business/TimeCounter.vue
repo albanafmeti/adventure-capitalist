@@ -9,7 +9,7 @@
         data() {
             return {
                 seconds: this.time / 1000,
-                interval: null,
+                timeIntervals: [],
             }
         },
         watch: {
@@ -29,10 +29,10 @@
         },
         methods: {
             start() {
-                this.interval = setInterval(() => {
+                let interval = setInterval(() => {
 
                     if (this.seconds <= 0) {
-                        clearInterval(this.interval);
+                        clearInterval(interval);
                         this.seconds = this.time / 1000;
 
                     } else if (this.seconds >= 1) {
@@ -42,14 +42,14 @@
                     }
 
                 }, 1000);
+
+                this.timeIntervals.push(interval);
             }
         },
         beforeDestroy() {
-            clearInterval(this.interval);
+            this.timeIntervals.forEach(interval => {
+                clearInterval(interval)
+            });
         }
     }
 </script>
-
-<style scoped>
-
-</style>

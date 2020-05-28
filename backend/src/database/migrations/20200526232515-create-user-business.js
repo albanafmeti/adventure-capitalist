@@ -33,11 +33,11 @@ module.exports = {
                 onDelete: 'CASCADE',
             },
             upgrade_cost: {
-                type: Sequelize.BIGINT,
+                type: Sequelize.DOUBLE,
                 allowNull: false
             },
             upgrade_time: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.FLOAT,
                 allowNull: true
             },
             upgrade_count: {
@@ -54,10 +54,6 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 defaultValue: 25
-            },
-            token: {
-                allowNull: true,
-                type: Sequelize.STRING
             },
             manager_id: {
                 allowNull: true,

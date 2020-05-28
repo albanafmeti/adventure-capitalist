@@ -21,7 +21,7 @@ module.exports = {
                 allowNull: false
             },
             initial_cost: {
-                type: Sequelize.BIGINT,
+                type: Sequelize.DOUBLE,
                 allowNull: false
             },
             coefficient: {
@@ -29,7 +29,7 @@ module.exports = {
                 allowNull: false
             },
             initial_time: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.FLOAT,
                 allowNull: false
             },
             initial_revenue: {

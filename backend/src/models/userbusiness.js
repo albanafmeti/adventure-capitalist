@@ -3,12 +3,11 @@ module.exports = (sequelize, DataTypes) => {
     const UserBusiness = sequelize.define('UserBusiness', {
         userId: DataTypes.INTEGER,
         businessId: DataTypes.INTEGER,
-        upgradeCost: DataTypes.BIGINT,
-        upgradeTime: DataTypes.INTEGER,
+        upgradeCost: DataTypes.DOUBLE,
+        upgradeTime: DataTypes.FLOAT,
         upgradeCount: DataTypes.INTEGER,
         upgradePreviousGoal: DataTypes.INTEGER,
         upgradeCountGoal: DataTypes.INTEGER,
-        token: DataTypes.STRING,
         managerId: DataTypes.INTEGER
     }, {
         tableName: 'user_business',

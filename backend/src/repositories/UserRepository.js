@@ -1,4 +1,5 @@
 const Repository = require('./Repository');
+const BusinessRepository = require('./BusinessRepository');
 const User = require('../models').User;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
@@ -46,6 +47,27 @@ class UserRepository extends Repository {
         return User.findOne({
             where: {token: token},
         });
+    }
+
+    static async synchronizeData(user, data) {
+
+        await user.update({credits: data.currentCredit});
+
+        const myBusinesses = await BusinessRepository.getBusinesses(user);
+        const myBusinessIds = myBusinesses.map(b => b.businessId);
+
+        const businesses = data.businesses;
+
+        for (let business of businesses) {
+
+            if (!myBusinessIds.includes(business.id)) {
+                await BusinessRepository.purchaseBusiness(user, business);
+            } else {
+                await BusinessRepository.updateMyBusiness(user, business);
+            }
+
+        }
+
     }
 }
 
