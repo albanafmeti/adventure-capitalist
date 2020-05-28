@@ -23,8 +23,6 @@ Click in the link below to try the game:
 
 [https://adventure-capitalist.club/](https://adventure-capitalist.club/)
 
-Steps:
-
 - Go to __Register__ and put a username/password and register.
 - If successfully registered, fill login credentials and sign in.
 - Start playing the game.
@@ -35,7 +33,10 @@ Here is a video demostrating the game in action:
 
 Here are some screenshots on Desktop:
 
-
+![](screenshots/login.png)
+![](screenshots/register.png)
+![](screenshots/game.png)
+![](screenshots/managers.png)
 
 My game is responsive as well so check some screenshots on mobile:
 
