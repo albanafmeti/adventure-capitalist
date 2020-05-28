@@ -29,17 +29,21 @@
 
                     <div class="d-flex">
 
-                        <vs-button
-                            v-if="currentCredit < business.initialCost"
-                            disabled>
-                            $ {{ business.initialCost }} - Purchase
-                        </vs-button>
+                        <vs-tooltip>
 
-                        <vs-tooltip
-                            v-else>
-                            <vs-button>
-                                $ {{ business.initialCost }} - Purchase
-                            </vs-button>
+                            <div>
+                                <vs-button
+                                    v-if="currentCredit < business.initialCost"
+                                    disabled>
+                                    $ {{ business.initialCost }} - Purchase
+                                </vs-button>
+
+                                <vs-button
+                                    v-else
+                                    @click.prevent="purchaseBusiness">
+                                    $ {{ business.initialCost }} - Purchase
+                                </vs-button>
+                            </div>
 
                             <template #tooltip>
                                 Purchase this business and start making money.
@@ -58,10 +62,12 @@
     import TimeCounter from "./business/TimeCounter";
 
     import {mapGetters} from 'vuex';
+    import NotificationMixin from "../mixins/NotificationMixin";
 
     export default {
         name: "SingleBusiness",
         components: {TimeCounter, UpgradeProgressBar, ProgressBar},
+        mixins: [NotificationMixin],
         props: {
             business: {
                 type: Object,
@@ -72,6 +78,14 @@
             ...mapGetters({
                 currentCredit: 'user/currentCredit'
             })
+        },
+        methods: {
+            purchaseBusiness() {
+                this.$store.commit('user/purchaseBusiness', {
+                    business: this.business,
+                    notifySuccess: this.success
+                });
+            }
         }
     }
 </script>

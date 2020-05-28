@@ -27,6 +27,7 @@ const types = {
     SET_BUSINESSES: 'setBusinesses',
 
     UPGRADE_BUSINESS: 'upgradeBusiness',
+    PURCHASE_BUSINESS: 'purchaseBusiness',
 
     CLEAR_STATE: 'clearState',
 };
@@ -51,6 +52,22 @@ export const mutations = {
 
     [types.SET_BUSINESSES](state, businesses) {
         state.businesses = businesses;
+    },
+
+    [types.PURCHASE_BUSINESS](state, {business, notifySuccess}) {
+        state.businesses.push({
+            ...business,
+            upgradeCost: business.initialCost * business.coefficient,
+            upgradeTime: business.initialTime,
+            upgradeCount: 1,
+            upgradePreviousGoal: 0,
+            upgradeCountGoal: 25,
+            managerId: null,
+            hasManager: false,
+            currentRevenue: business.initialRevenue,
+            currentTime: business.initialTime
+        });
+        notifySuccess("CONGRATS", `You have purchased business: ${business.name}.`, 6000);
     },
 
     [types.UPGRADE_BUSINESS](state, {business, notifySuccess}) {

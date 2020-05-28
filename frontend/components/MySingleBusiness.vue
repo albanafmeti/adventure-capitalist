@@ -12,6 +12,7 @@
                     <img
                         @click.prevent="operate"
                         class="img-thumbnail rounded-circle activated"
+                        :class="{'not-clickable': isOperating }"
                         :src="business.image">
 
                     <template #tooltip>
@@ -86,6 +87,7 @@
         data() {
             return {
                 progress: 0,
+                isOperating: false,
                 timeValue: this.business.currentTime
             }
         },
@@ -100,6 +102,11 @@
         methods: {
             operate() {
 
+                if (this.isOperating) {
+                    return;
+                }
+
+                this.isOperating = true;
                 let progress = 100 * 100 / this.business.currentTime;
 
                 let interval = setInterval(() => {
@@ -108,6 +115,7 @@
                         clearInterval(interval);
                         this.progress = 0;
                         this.timeValue = this.business.currentTime;
+                        this.isOperating = false;
 
                         this.$store.commit('user/addRevenue', this.business.currentRevenue);
 
@@ -119,6 +127,7 @@
 
                 this.$refs.counter.start();
             },
+
             upgradeBusiness() {
                 this.$store.commit('user/addExpense', this.business.upgradeCost);
                 this.$store.commit('user/upgradeBusiness', {
@@ -131,5 +140,7 @@
 </script>
 
 <style scoped>
-
+    .not-clickable {
+        cursor: default !important;
+    }
 </style>
