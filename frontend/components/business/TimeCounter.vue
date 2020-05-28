@@ -47,9 +47,6 @@
                     .join(":")
             }
         },
-        mounted() {
-            console.log('time', this.time);
-        },
         beforeDestroy() {
             this.timeIntervals.forEach(interval => {
                 clearInterval(interval)
