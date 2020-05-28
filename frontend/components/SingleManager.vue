@@ -19,7 +19,7 @@
                 <vs-tooltip not-hover v-model="activeTooltip">
                     <vs-button
                         disabled
-                        v-if="currentCredit < manager.cost">
+                        v-if="currentCredit < manager.cost || !hasActiveBusiness">
                         Hire
                     </vs-button>
 
@@ -32,9 +32,6 @@
                     </template>
                 </vs-tooltip>
             </div>
-            <!--<div>
-                <i class="fa fa-check"></i>&nbsp;&nbsp;Hired
-            </div>-->
         </div>
     </div>
 </template>
@@ -69,13 +66,16 @@
             },
             business() {
                 return this.businesses.find(b => b.type === this.manager.businessType);
+            },
+            hasActiveBusiness() {
+                return this.myBusinesses.find(b => b.type === this.manager.businessType);
             }
         },
         methods: {
             hireManager() {
                 this.activeTooltip = false;
                 this.$nextTick(() => {
-                    this.$store.commit('user/addExpense', this.business.initialCost);
+                    this.$store.commit('user/addExpense', this.manager.cost);
                     this.$store.commit('user/assignManager', {
                         manager: this.manager,
                         notifySuccess: this.success

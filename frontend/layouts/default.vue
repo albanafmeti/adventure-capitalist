@@ -44,9 +44,14 @@
                 }, 5000);
             }
 
-            window.addEventListener('beforeunload', () => {
-                alert(12);
-            });
+            window.onbeforeunload = (event) => {
+                this.$socket.client.emit('synchronize', {
+                    accessToken: this.$auth.getToken('local').replace("Bearer ", ""),
+                    currentCredit: this.currentCredit,
+                    businesses: this.businesses,
+                });
+                return "Storing values before leaving...";
+            };
 
         },
         beforeDestroy() {
