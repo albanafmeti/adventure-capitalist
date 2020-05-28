@@ -1,0 +1,27 @@
+server {
+
+    if ($host = api.adventure-capitalist.club) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen       80;
+    server_name  api.adventure-capitalist.club;
+
+    location / {
+        proxy_pass   http://localhost:9000/;
+    }
+}
+
+server {
+    listen       443 ssl;
+    server_name  api.adventure-capitalist.club;
+
+    location / {
+        proxy_pass   http://localhost:9000/;
+    }
+
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+    ssl_certificate /etc/letsencrypt/live/api.adventure-capitalist.club/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.adventure-capitalist.club/privkey.pem;
+}

@@ -1,0 +1,29 @@
+server {
+
+    if ($host = adventure-capitalist.club) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+    server_name adventure-capitalist.club;
+
+    root /home/alban/Projects/Game/frontend/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+server {
+    listen       443 ssl;
+    server_name  adventure-capitalist.club;
+
+    root /home/alban/Projects/Game/frontend/dist;
+    index index.html;
+
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+    ssl_certificate /etc/letsencrypt/live/adventure-capitalist.club/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/adventure-capitalist.club/privkey.pem;
+}
