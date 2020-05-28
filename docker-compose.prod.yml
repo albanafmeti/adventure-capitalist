@@ -15,8 +15,6 @@ services:
     container_name: game_frontend
     environment:
       - APP_ENV=local
-    ports:
-      - "8000:3000"
 
   # ----- Back-end API Node.js Service ----- #
   backend:
@@ -33,8 +31,6 @@ services:
       - database
     ports:
       - "9000:80"
-    expose:
-      - "80"
 
   # ----- MySQL Database ----- #
   database:
