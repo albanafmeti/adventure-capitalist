@@ -48,7 +48,7 @@ My game is responsive so check some screenshots on mobile:
 
 ## Implementation
 
-Our Game is built as a full-stack application having back and front end side, using Javascript on both sides.
+The game is built as a full-stack application having back and front end side, using Javascript on both sides.
 
 In the front-end side I used Vue.js, with Nuxt.js which is a wrapper of Vue, organizing the code little better.
 In the back-end side I used Node.js with Express. Code organization and architecture, it's all my personal implementation.
