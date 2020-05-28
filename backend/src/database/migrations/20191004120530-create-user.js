@@ -22,7 +22,7 @@ module.exports = {
                 allowNull: true
             },
             credits: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.DOUBLE,
                 default: 0
             },
             created_at: {

@@ -33,11 +33,25 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+
     export default {
         name: "NavBar",
+        computed: {
+            ...mapGetters({
+                businesses: 'user/businesses',
+                currentCredit: 'user/currentCredit',
+            })
+        },
         methods: {
             logout() {
+                const token = this.$auth.getToken('local').replace("Bearer ", "");
                 this.$auth.logout();
+                this.$socket.client.emit('synchronize', {
+                    accessToken: token,
+                    currentCredit: this.currentCredit,
+                    businesses: this.businesses,
+                });
                 this.$store.commit("user/clearState");
             }
         }

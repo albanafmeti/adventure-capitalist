@@ -44,6 +44,10 @@
                 }, 5000);
             }
 
+            window.addEventListener('beforeunload', () => {
+                alert(12);
+            });
+
         },
         beforeDestroy() {
             clearInterval(this.synchronizeDataInterval);
