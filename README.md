@@ -129,3 +129,5 @@ Keep in mind that for production deployment, maybe you would want to host in a s
 This was a feature that was requested in the specifications document, but I figured out it later. So, initially I thought that businesses should generate money while you are away, but the game need to be up and running in the browser.
 Then after 4 days I figured out that the businesses should generate money even if you close the game.
 So, I left this out because I don't have much time left and maybe this would need any specific change on my current code as well.
+
+*Enjoy The Game!*
