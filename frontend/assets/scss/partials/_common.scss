@@ -38,6 +38,17 @@ body {
 .middle-side {
     .top-part {
         flex: 2;
+
+        .smaller-part {
+            flex: 4;
+            border-left: 2px solid $danger;
+            margin-left: 1px;
+        }
+
+        .bigger-part {
+            flex: 10;
+            border-right: 2px solid $danger;
+        }
     }
 
     .game-container {
@@ -47,6 +58,17 @@ body {
 
     .bottom-part {
         flex: 2;
+
+        .smaller-part {
+            flex: 4;
+            border-right: 2px solid $primary;
+            margin-right: 1px;
+        }
+
+        .bigger-part {
+            flex: 10;
+            border-left: 2px solid $primary;
+        }
     }
 }
 

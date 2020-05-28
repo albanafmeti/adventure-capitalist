@@ -39,7 +39,7 @@
                         <TimeCounter ref="counter" :time="timeValue"/>
                     </div>
 
-                    <div v-if="business.hasManager">
+                    <div v-if="business.hasManager" class="d-none d-md-block d-lg-block">
                         <span class="text-muted business-manager">Managed by {{ business.manager.name }}</span>
                     </div>
 
