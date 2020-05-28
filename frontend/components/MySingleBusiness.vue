@@ -24,7 +24,7 @@
             <div class="business-details d-flex flex-column">
                 <div class="detail-top">
                     <div class="business-name mb-2">
-                        <span>{{ business.name }} ( {{ business.upgradeCount }} )</span>
+                        <span>{{ business.name }}</span>
                         <span>+ $ {{ business.currentRevenue }}</span>
                     </div>
                     <div>

@@ -162,6 +162,18 @@ body {
                 justify-content: space-between;
                 align-items: center;
 
+                span {
+                    flex: 1;
+
+                    &:first-child {
+                        text-align: left;
+                    }
+
+                    &:last-child {
+                        text-align: right;
+                    }
+                }
+
                 &.bigger {
                     font-size: 20px;
                 }
@@ -226,6 +238,10 @@ body {
     img {
         width: 60px;
     }
+}
+
+.navbar-nav .nav-item {
+    text-align: center;
 }
 
 .vs-notification-parent--top-center .vs-notification.vs-notification--border {
