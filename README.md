@@ -38,9 +38,12 @@ Here are some screenshots on Desktop:
 ![](screenshots/game.png)
 ![](screenshots/managers.png)
 
-My game is responsive as well so check some screenshots on mobile:
+My game is responsive so check some screenshots on mobile:
 
--
+![](screenshots/mobile-login.jpeg)
+![](screenshots/mobile-register.jpeg)
+![](screenshots/mobile-game.jpeg)
+![](screenshots/mobile-managers.jpeg)
 
 
 ## Implementation
