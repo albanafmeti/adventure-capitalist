@@ -2,22 +2,22 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-2 p-0 left-side">
+            <div class="col-md-2 p-0 left-side d-none d-md-block d-lg-block">
                 <div class="smaller-part"></div>
                 <div class="bigger-part"></div>
             </div>
 
-            <div class="col-8 p-0 middle-side">
-                <div class="top-part"></div>
+            <div class="col-md-8 col-sm-12 p-0 middle-side">
+                <div class="top-part d-none d-md-block d-lg-block"></div>
 
                 <div class="game-container">
                     <slot></slot>
                 </div>
 
-                <div class="bottom-part"></div>
+                <div class="bottom-part d-none d-md-block d-lg-block"></div>
             </div>
 
-            <div class="col-2 p-0 right-side">
+            <div class="col-md-2 p-0 right-side d-none d-md-block d-lg-block">
                 <div class="bigger-part"></div>
                 <div class="smaller-part"></div>
             </div>
