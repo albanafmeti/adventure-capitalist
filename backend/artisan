@@ -55,11 +55,7 @@ elif [ "$1" == "npm" ]; then
     $COMPOSE exec $SERVICE npm "$@"
 
 # If "seq" is used, run sequelize-cli commands
-elif [ "$1" == "seq" ]; then
+elif [ "$1" == "sequelize" ]; then
     shift 1
     $COMPOSE exec $SERVICE npx sequelize-cli "$@"
-
-# Else, run our app commands
-else
-    $COMPOSE exec $SERVICE npm run --silent command "$@"
 fi
