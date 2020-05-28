@@ -7,7 +7,7 @@ module.exports = {
         await queryInterface.bulkInsert('businesses', [
             {
                 name: "Lemonade Stand",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://i.pinimg.com/originals/00/3b/3e/003b3e713ab54d92169b191c0897d4a7.png",
                 type: "lemonade-stand",
                 initial_cost: 4,
                 coefficient: 1.07,
@@ -18,7 +18,7 @@ module.exports = {
             },
             {
                 name: "Newspaper Delivery",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://cdn3.iconfinder.com/data/icons/news-28/100/paperboy-1-1-news-newspaper-stack-bicycle-bike-press-subscription-paperboy-route-delivery-male-512.png",
                 type: "newspaper-delivery",
                 initial_cost: 60,
                 coefficient: 1.15,
@@ -29,7 +29,7 @@ module.exports = {
             },
             {
                 name: "Car Wash",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://pngitem.com/pimgs/m/515-5158753_auto-car-wash-png-transparent-png.png",
                 type: "car-wash",
                 initial_cost: 720,
                 coefficient: 1.14,
@@ -40,7 +40,7 @@ module.exports = {
             },
             {
                 name: "Pizza Delivery",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://www.freepngimg.com/thumb/pizza/72056-cuisine-set-delivery-vector-logo-pizza-italian.png",
                 type: "pizza-delivery",
                 initial_cost: 8640,
                 coefficient: 1.13,
@@ -51,7 +51,7 @@ module.exports = {
             },
             {
                 name: "Donut Shop",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://webstockreview.net/images/donut-clipart-frame-16.png",
                 type: "donut-shop",
                 initial_cost: 103680,
                 coefficient: 1.12,
@@ -62,7 +62,7 @@ module.exports = {
             },
             {
                 name: "Shrimp Boat",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://lh3.googleusercontent.com/proxy/3LEUP_dMT2YQFHbKDGZcunCC59aXruEtzzNcNwjgJxv_HyH4eP4zrFNWm5iFbUXD2CFNfYQtt9s6nUSuzlkKo7LW6OrKI6aPAo8VaCbSjPKFBEQrmTbz-e4hwSVO4LQ9M45Z1IsNUWejLTaMl1aaCl-recKV",
                 type: "shrimp-boat",
                 initial_cost: 1244160,
                 coefficient: 1.11,
@@ -73,7 +73,7 @@ module.exports = {
             },
             {
                 name: "Hockey Team",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://png.pngtree.com/png-vector/20190625/ourlarge/pngtree-hockey-player-with-yellow-jersey-run-to-attack-png-image_1511372.jpg",
                 type: "hockey-team",
                 initial_cost: 14929920,
                 coefficient: 1.10,
@@ -84,7 +84,7 @@ module.exports = {
             },
             {
                 name: "Movie Studio",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://png.pngtree.com/png-vector/20190810/ourlarge/pngtree-film-movie-studio-theatre-abstract-flat-color-icon-template-png-image_1653867.jpg",
                 type: "movie-studio",
                 initial_cost: 179159040,
                 coefficient: 1.09,
@@ -95,7 +95,7 @@ module.exports = {
             },
             {
                 name: "Bank",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://image.flaticon.com/icons/png/512/330/330711.png",
                 type: "bank",
                 initial_cost: 2149908480,
                 coefficient: 1.08,
@@ -106,7 +106,7 @@ module.exports = {
             },
             {
                 name: "Oil Company",
-                image: "https://images.vexels.com/media/users/3/141683/isolated/preview/7562c83a3feb6672e5ac55b1608ea003-lemon-yellow-leaves-by-vexels.png",
+                image: "https://i.kisscc0.com/20180705/lzw/kisscc0-filling-station-gasoline-pump-fuel-dispenser-fuel-pump-5b3e2ff37f9da7.5186135015308021635227.png",
                 type: "oil-company",
                 initial_cost: 25798901760,
                 coefficient: 1.07,
