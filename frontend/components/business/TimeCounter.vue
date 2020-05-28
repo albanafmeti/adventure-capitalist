@@ -36,10 +36,9 @@
                 this.timeIntervals.push(interval);
             },
             toHHMMSS(secs) {
-                var sec_num = parseInt(secs, 10);
-                var hours = Math.floor(sec_num / 3600);
-                var minutes = Math.floor(sec_num / 60) % 60;
-                var seconds = sec_num % 60;
+                let hours = Math.floor(secs / 3600);
+                let minutes = Math.floor(secs / 60) % 60;
+                let seconds = Math.round(secs % 60);
 
                 return [hours, minutes, seconds]
                     .map(v => v < 10 ? "0" + v : v)
