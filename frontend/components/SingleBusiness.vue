@@ -27,9 +27,9 @@
                         <TimeCounter ref="counter" :time="business.initialTime"/>
                     </div>
 
-                    <div class="d-flex">
+                    <div class="d-flex" @mouseenter="activeTooltip = true" @mouseleave="activeTooltip = false">
 
-                        <vs-tooltip>
+                        <vs-tooltip not-hover v-model="activeTooltip">
 
                             <div>
                                 <vs-button
@@ -74,6 +74,11 @@
                 required: true
             }
         },
+        data() {
+            return {
+                activeTooltip: false
+            }
+        },
         computed: {
             ...mapGetters({
                 currentCredit: 'user/currentCredit'
@@ -81,10 +86,14 @@
         },
         methods: {
             purchaseBusiness() {
-                this.$store.commit('user/purchaseBusiness', {
-                    business: this.business,
-                    notifySuccess: this.success
-                });
+                this.activeTooltip = false;
+                this.$nextTick(() => {
+                    this.$store.commit('user/addExpense', this.business.initialCost);
+                    this.$store.commit('user/purchaseBusiness', {
+                        business: this.business,
+                        notifySuccess: this.success
+                    });
+                })
             }
         }
     }

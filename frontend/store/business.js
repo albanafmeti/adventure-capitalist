@@ -83,4 +83,7 @@ export const getters = {
     business: (state) => (id) => {
         return state.businesses.find(business => business.id === id)
     },
+
+    managersLoaded: state => state.managersLoaded,
+    managers: state => state.managers,
 };

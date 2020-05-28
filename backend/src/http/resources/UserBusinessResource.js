@@ -1,3 +1,5 @@
+const ManagerResource = require('./ManagerResource');
+
 class UserBusinessResource {
 
     toArray(userBusiness) {
@@ -17,6 +19,7 @@ class UserBusinessResource {
             upgradeCountGoal: userBusiness.upgradeCountGoal,
             managerId: userBusiness.managerId,
             hasManager: !!userBusiness.managerId,
+            manager: userBusiness.manager ? ManagerResource.toArray(userBusiness.manager) : null,
 
             currentRevenue: userBusiness.upgradeCount * userBusiness.business.initialRevenue,
             currentTime: userBusiness.upgradeTime ? userBusiness.upgradeTime : userBusiness.business.initialTime

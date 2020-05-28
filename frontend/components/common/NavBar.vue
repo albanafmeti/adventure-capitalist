@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <nuxt-link class="navbar-brand" to="/">
-            <img src="~/assets/images/logo.png">&nbsp;Adventure Capitalist
+            <img src="~/assets/images/logo.png">&nbsp;AdVenture Capitalist
         </nuxt-link>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

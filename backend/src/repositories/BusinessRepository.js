@@ -16,6 +16,10 @@ class BusinessRepository extends Repository {
                         model: Business,
                         as: 'business',
                     },
+                    {
+                        model: Manager,
+                        as: 'manager',
+                    },
                 ]
             });
         }

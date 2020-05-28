@@ -12,8 +12,11 @@
             <div class="business-list flex-fill">
 
                 <p class="text-muted text-center status-info">
-                    You own {{ $pluralize('business', myBusinesses.length, true)}}. 2 of them are operating by
-                    managers.</p>
+                    You own {{ $pluralize('business', myBusinesses.length, true)}}.
+                    <span
+                        v-if="managedCount > 1">{{ managedCount }} of them are being managed from managers.</span>
+                    <span v-else-if="managedCount === 1">1 is being managed by its manager.</span>
+                </p>
 
                 <div class="row">
 
@@ -67,6 +70,10 @@
             filteredBusinesses() {
                 const ids = this.myBusinesses.map(b => b.id);
                 return this.businesses.filter(b => !ids.includes(b.id))
+            },
+
+            managedCount() {
+                return this.myBusinesses.filter(b => b.hasManager).length;
             }
         },
         mixins: [NotificationMixin, CommonMiddleware, InitialLoadMixin],

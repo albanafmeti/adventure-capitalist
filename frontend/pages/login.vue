@@ -8,7 +8,7 @@
             <div class="game-logo">
                 <img src="~/assets/images/logo.png">
             </div>
-            <div class="game-title mb-5">Adventure Capitalist</div>
+            <div class="game-title mb-5">AdVenture Capitalist</div>
 
             <div class="tabs">
                 <div class="tab-item" :class="{active: activeTab === 'login'}" @click.prevent="activeTab = 'login'">

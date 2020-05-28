@@ -28,6 +28,7 @@ const types = {
 
     UPGRADE_BUSINESS: 'upgradeBusiness',
     PURCHASE_BUSINESS: 'purchaseBusiness',
+    ASSIGN_MANAGER: 'assignManager',
 
     CLEAR_STATE: 'clearState',
 };
@@ -67,7 +68,7 @@ export const mutations = {
             currentRevenue: business.initialRevenue,
             currentTime: business.initialTime
         });
-        notifySuccess("CONGRATS", `You have purchased business: ${business.name}.`, 6000);
+        notifySuccess("CONGRATS", `You have purchased business ${business.name}.`, 6000);
     },
 
     [types.UPGRADE_BUSINESS](state, {business, notifySuccess}) {
@@ -77,7 +78,7 @@ export const mutations = {
 
                 if (b.upgradeCount + 1 >= b.upgradeCountGoal) {
 
-                    notifySuccess("CONGRATS", `Time is halved for business: ${business.name}.`, 6000);
+                    notifySuccess("CONGRATS", `Time is halved for your business ${business.name}.`, 6000);
 
                     return {
                         ...b,
@@ -96,6 +97,25 @@ export const mutations = {
                     upgradeCount: b.upgradeCount + 1,
                     upgradeCost: b.upgradeCost * b.coefficient,
                     currentRevenue: (b.upgradeCount + 1) * b.initialRevenue
+                }
+            }
+
+            return b;
+        });
+    },
+
+    [types.ASSIGN_MANAGER](state, {manager, notifySuccess}) {
+        state.businesses = state.businesses.map(b => {
+
+            if (b.type === manager.businessType) {
+
+                notifySuccess("CONGRATS", `Manager ${manager.name} is now managing your business ${b.name}.`, 6000);
+
+                return {
+                    ...b,
+                    managerId: manager.id,
+                    manager: manager,
+                    hasManager: true
                 }
             }
 

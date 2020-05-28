@@ -10,7 +10,7 @@
 
                 <vs-tooltip>
                     <img
-                        @click.prevent="operate"
+                        @click.prevent="operate(false)"
                         class="img-thumbnail rounded-circle activated"
                         :class="{'not-clickable': isOperating }"
                         :src="business.image">
@@ -40,7 +40,7 @@
                     </div>
 
                     <div v-if="business.hasManager">
-                        <span class="text-muted business-manager">Managed by Jim Terry</span>
+                        <span class="text-muted business-manager">Managed by {{ business.manager.name }}</span>
                     </div>
 
                     <div class="d-flex">
@@ -99,8 +99,15 @@
                 return (this.business.upgradeCount - this.business.upgradePreviousGoal) / (this.business.upgradeCountGoal - this.business.upgradePreviousGoal)
             }
         },
+        watch: {
+            business(newValue, oldValue) {
+                if (!oldValue.hasManager && newValue.hasManager) {
+                    this.operate(true);
+                }
+            }
+        },
         methods: {
-            operate() {
+            operate(automate = false) {
 
                 if (this.isOperating) {
                     return;
@@ -116,8 +123,11 @@
                         this.progress = 0;
                         this.timeValue = this.business.currentTime;
                         this.isOperating = false;
-
                         this.$store.commit('user/addRevenue', this.business.currentRevenue);
+
+                        if (automate) {
+                            this.operate(automate);
+                        }
 
                     } else {
                         this.progress += progress;
@@ -134,8 +144,13 @@
                     business: this.business,
                     notifySuccess: this.success
                 });
-            }
+            },
         },
+        mounted() {
+            if (this.business.hasManager) {
+                this.operate(true);
+            }
+        }
     }
 </script>
 

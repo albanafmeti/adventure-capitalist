@@ -8,17 +8,7 @@
 
 
         <div class="managers-list">
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
-            <SingleManager/>
+            <SingleManager v-for="manager in managers" :key="manager.id" :manager="manager"/>
         </div>
 
     </vs-dialog>
@@ -26,6 +16,7 @@
 
 <script>
     import SingleManager from "./SingleManager";
+    import {mapGetters} from 'vuex';
 
     export default {
         name: "ManagersDialog",
@@ -34,6 +25,11 @@
             return {
                 isActive: false
             }
+        },
+        computed: {
+            ...mapGetters({
+                managers: "business/managers"
+            })
         },
         methods: {
             show() {
