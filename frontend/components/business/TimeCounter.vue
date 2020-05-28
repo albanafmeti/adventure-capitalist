@@ -8,7 +8,8 @@
         props: ["time"],
         data() {
             return {
-                seconds: this.time / 1000
+                seconds: this.time / 1000,
+                interval: null,
             }
         },
         watch: {
@@ -28,10 +29,10 @@
         },
         methods: {
             start() {
-                var interval = setInterval(() => {
+                this.interval = setInterval(() => {
 
                     if (this.seconds <= 0) {
-                        clearInterval(interval);
+                        clearInterval(this.interval);
                         this.seconds = this.time / 1000;
 
                     } else if (this.seconds >= 1) {
@@ -42,6 +43,9 @@
 
                 }, 1000);
             }
+        },
+        beforeDestroy() {
+            clearInterval(this.interval);
         }
     }
 </script>

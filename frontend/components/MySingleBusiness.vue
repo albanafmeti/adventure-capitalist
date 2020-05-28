@@ -88,7 +88,9 @@
             return {
                 progress: 0,
                 isOperating: false,
-                timeValue: this.business.currentTime
+                timeValue: this.business.currentTime,
+
+                operationInterval: null
             }
         },
         computed: {
@@ -116,10 +118,10 @@
                 this.isOperating = true;
                 let progress = 100 * 100 / this.business.currentTime;
 
-                let interval = setInterval(() => {
+                this.operationInterval = setInterval(() => {
 
                     if (this.progress >= 100) {
-                        clearInterval(interval);
+                        clearInterval(this.operationInterval);
                         this.progress = 0;
                         this.timeValue = this.business.currentTime;
                         this.isOperating = false;
@@ -150,6 +152,9 @@
             if (this.business.hasManager) {
                 this.operate(true);
             }
+        },
+        beforeDestroy() {
+            clearInterval(this.operationInterval);
         }
     }
 </script>
