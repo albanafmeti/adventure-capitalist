@@ -1,5 +1,5 @@
 <template>
-    <span>{{ minutes }}:{{ secs }}</span>
+    <span>{{ toHHMMSS(seconds) }}</span>
 </template>
 
 <script>
@@ -16,16 +16,6 @@
             time(value) {
                 this.seconds = value / 1000;
             }
-        },
-        computed: {
-            minutes() {
-                const n = Math.round(this.seconds / 60);
-                return ("0" + n).slice(-2);
-            },
-            secs() {
-                const n = Math.round(this.seconds) - this.minutes * 60;
-                return ("0" + n).slice(-2);
-            },
         },
         methods: {
             start() {
@@ -44,7 +34,21 @@
                 }, 1000);
 
                 this.timeIntervals.push(interval);
+            },
+            toHHMMSS(secs) {
+                var sec_num = parseInt(secs, 10)
+                var hours = Math.floor(sec_num / 3600)
+                var minutes = Math.floor(sec_num / 60) % 60
+                var seconds = sec_num % 60
+
+                return [hours, minutes, seconds]
+                    .map(v => v < 10 ? "0" + v : v)
+                    .filter((v, i) => v !== "00" || i > 0)
+                    .join(":")
             }
+        },
+        mounted() {
+            console.log('time', this.time);
         },
         beforeDestroy() {
             this.timeIntervals.forEach(interval => {
