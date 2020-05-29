@@ -53,6 +53,7 @@
                     businesses: this.businesses,
                 });
                 this.$store.commit("user/clearState");
+                this.$store.commit("business/clearState");
             }
         }
     }
