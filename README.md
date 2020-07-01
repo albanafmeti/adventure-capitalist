@@ -122,12 +122,4 @@ Keep in mind that for production deployment, maybe you would want to host in a s
 
 - The progress bars are not looking very well when the money generation speeds up. So, there are some issues with rendering performance, visually. Using Canvas would be better in these cases.
 
-### What I left out
-
-*When you close the game, next time you open it, you should see the money that your businesses made for you. (Businesses continue to make progress while you’re away.)*
-
-This was a feature that was requested in the specifications document, but I figured out it later. So, initially I thought that businesses should generate money while you are away, but the game need to be up and running in the browser.
-Then after 4 days I figured out that the businesses should generate money even if you close the game.
-So, I left this out because I don't have much time left and maybe this would need any specific change on my current code as well.
-
 *Enjoy The Game!*
